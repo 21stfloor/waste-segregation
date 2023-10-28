@@ -35,45 +35,50 @@ def set_servo_angle(channel, angle):
 
 servo1 = servo.Servo(pca.channels[0])
 servo2 = servo.Servo(pca.channels[1])
-# while True:
-    # # Move the servo to 0 degrees
-    # set_servo_angle(servo_channel_1, 0)
-    # time.sleep(3)
-    # pca.channels[servo_channel_1].angle = 90
-    # # Move the servo to 90 degrees
-    # set_servo_angle(servo_channel_1, 90)
-    # time.sleep(3)
-    
-    # # Move the servo to 180 degrees
-    # set_servo_angle(servo_channel_1, 180)
-    # time.sleep(3)
+
+servo3 = servo.Servo(pca.channels[2])
+servo4 = servo.Servo(pca.channels[4])
+
+
 while True:
     #rotate back to mid
     print('into: 90')
     for i in range(90):
         servo1.angle = i
         servo2.angle = 180 - i
-        time.sleep(0.01)
+        
+        #servo3.angle = i
+        #servo4.angle = 180 - i
+        #time.sleep(0.01)
     time.sleep(1)
     
     print('into: 180')
     for i in range(90):
         servo1.angle = 90 + i
         servo2.angle = 90 - i 
-        time.sleep(0.01)
+        
+        #servo3.angle = 90 + i
+        #servo4.angle = 90 - i
+        #time.sleep(0.01)
     time.sleep(1)
     print('into: 90')
     #rotate back to mid
     for i in range(90):
         servo1.angle = 180 - i
         servo2.angle = i
-        time.sleep(0.01)
+        
+        servo3.angle = 180 - i
+        servo4.angle = i
+        #time.sleep(0.01)
     time.sleep(1)
     print('into: 0')
     
     for i in range(90):
         servo1.angle = 90 - i
         servo2.angle = 90 + i
-        time.sleep(0.01)
+        
+        servo3.angle = 90 - i
+        servo4.angle = 90 + i
+        #time.sleep(0.01)
     time.sleep(1)
 

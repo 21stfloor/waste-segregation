@@ -41,17 +41,23 @@ servo4 = servo.Servo(pca.channels[2])
 
 
 def return_wood1():
-    print('return wood1:  =  ' + str(servo3.angle))
-    if servo3.angle < 91 and servo3.angle > 89:
+    print('servo3.angle:  =  ' + str(servo3.angle))
+    print('servo4.angle:  =  ' + str(servo4.angle))
+    if servo3.angle is None:
         pass
+    # elif servo3.angle < 72 and servo3.angle > 68:
+        # pass
+        # time.sleep(2)
     else:
-        #rotate back to mid
-        for i in range(90):
-            
-            servo3.angle = 180 - i
-            servo4.angle = i
-        #time.sleep(0.01)
-    time.sleep(1)
+        angle = servo3.angle
+        print('angle:  =  ' + str(angle))
+        for i in range(0, 70, 2):
+            if servo3.angle < 72 and servo3.angle > 68:
+                #servo3.angle = 70
+                #servo4.angle = 70
+                pass
+            # servo3.angle = 140 - i
+            # servo4.angle = i
 
 def drop_wood1():
     print('drop wood1')
@@ -156,3 +162,9 @@ def drop_woods_right():
         servo3.angle = 140 - i
         servo4.angle = i
     time.sleep(1)
+    
+def reset_all():
+	servo1.angle = 0
+	servo2.angle = 0
+	servo3.angle = 0
+	servo4.angle = 0

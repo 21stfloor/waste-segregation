@@ -1,8 +1,6 @@
 from servo3 import *
 import time
-
-drop_wood1()
-
+drop_woods_left()
 
 #time.sleep(1)
 
@@ -19,3 +17,6 @@ time.sleep(1)
 
 
 return_wood1()
+
+
+reset_all()

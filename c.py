@@ -19,7 +19,7 @@ def servoFunc():
     #if camera_ready == True:
         #print('servo_done=' + str(servo_done) + ', camera_ready=' + str(camera_ready))
     #if servo_done == True and camera_ready == True:
-        servo_done = False
+        servo_done == False
         if index == 0 :
             drop_woods_right()
             #drop_wood1()
@@ -34,8 +34,8 @@ def servoFunc():
             #return_woods_left()
         else:
             return_wood1()
-        time.sleep(5)
-        servo_done = True
+        time.sleep(3)
+        servo_done == True
 
         if done:
             break
@@ -56,8 +56,8 @@ def cameraFunction():
 
     # Set the desired window size
     window_width, window_height = 800, 600
-    # cv2.namedWindow("Webcam Image", cv2.WINDOW_NORMAL)  # Create a resizable window
-    # cv2.resizeWindow("Webcam Image", window_width, window_height)
+    cv2.namedWindow("Webcam Image", cv2.WINDOW_NORMAL)  # Create a resizable window
+    cv2.resizeWindow("Webcam Image", window_width, window_height)
     cardboard_index = 3
 
     camera_delay = 1
@@ -68,7 +68,6 @@ def cameraFunction():
     text = "Others"
     
     while True:
-        
         
         # Listen to the keyboard for presses.
         keyboard_input = cv2.waitKey(1)
@@ -123,9 +122,9 @@ def cameraFunction():
             camera_ready = False
         
 
-        # cv2.putText(image, text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.3, (0, 255, 0), 1)
+        cv2.putText(image, text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.3, (0, 255, 0), 1)
         # Show the image in a window
-        # cv2.imshow("Webcam Image", image)
+        cv2.imshow("Webcam Image", image)
         
         # 27 is the ASCII for the Esc key on your keyboard.
         if keyboard_input == 27:

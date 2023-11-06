@@ -4,26 +4,47 @@ import time
 # Set the GPIO mode to BCM
 GPIO.setmode(GPIO.BCM)
 
-# Define the GPIO pins for Red, Green, and Blue
-RED_PIN = 17
-GREEN_PIN = 27
-BLUE_PIN = 22
+# Define the GPIO pins for Red, Green, and Blue for each LED
+led_pins = {
+    "LED1": (17, 27, 22),
+    "LED2": (5, 6, 13),
+    "LED3": (19, 26, 18),
+    "LED4": (23, 24, 25),
+    "LED5": (12, 16, 20),
+    "LED6": (21, None, None)  # Note: Some pins can be shared for GND or VCC
+}
 
 # Set up the GPIO pins as output
-GPIO.setup(RED_PIN, GPIO.OUT)
-GPIO.setup(GREEN_PIN, GPIO.OUT)
-GPIO.setup(BLUE_PIN, GPIO.OUT)
+for led, (red_pin, green_pin, blue_pin) in led_pins.items():
+    if red_pin is not None:
+        GPIO.setup(red_pin, GPIO.OUT)
+    if green_pin is not None:
+        GPIO.setup(green_pin, GPIO.OUT)
+    if blue_pin is not None:
+        GPIO.setup(blue_pin, GPIO.OUT)
 
-# Function to set the color
-def set_color(red, green, blue):
-    GPIO.output(RED_PIN, red)
-    GPIO.output(GREEN_PIN, green)
-    GPIO.output(BLUE_PIN, blue)
+# Function to set the color for a specific LED
+def set_color(led, red, green, blue):
+    red_pin, green_pin, blue_pin = led_pins[led]
+    if red_pin is not None:
+        GPIO.output(red_pin, red)
+    if green_pin is not None:
+        GPIO.output(green_pin, green)
+    if blue_pin is not None:
+        GPIO.output(blue_pin, blue)
 
-# Example: Turn on the Red color
-set_color(1, 0, 0)
+# List of colors in RGB format (Red, Green, Blue)
+colors = [(1, 0, 0), (0, 1, 0), (0, 0, 1)]  # Red, Green, Blue
 
-# You can create other color combinations by calling the set_color function.
+try:
+    while True:
+        for led in led_pins:
+            for color in colors:
+                set_color(led, *color)
+                time.sleep(1)  # Change color every 1 second
+
+except KeyboardInterrupt:
+    pass
 
 # Cleanup and exit
 GPIO.cleanup()
